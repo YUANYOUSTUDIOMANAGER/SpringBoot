@@ -1,9 +1,6 @@
 package com.oo.springboot01.entity;
 
-import javafx.print.PrintSides;
 import lombok.Data;
-
-import java.io.PushbackInputStream;
 
 /**
  * @Auther: YUANYOUSTUDIO
@@ -18,7 +15,7 @@ public class User {
     private int u_id; //
     private String u_name; //
     private String u_pwd; //
-    private String u_eamil; //
+    private String u_email; //
     private int u_pid; //
 
 }
