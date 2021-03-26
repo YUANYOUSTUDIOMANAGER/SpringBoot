@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.oo.springboot03.repository.UserDao">
+
+    <resultMap id="resultMap" type="com.oo.springboot03.entity.User"></resultMap>
+
+    <sql id="base_column">
+        u_id,u_name,u_pwd,u_email,u_pid
+    </sql>
+
+    <insert id="insert" parameterType="com.oo.springboot03.entity.User">
+        INSERT INTO
+        user(
+        <include refid="base_column" />
+        )
+        VALUE
+        (#{u_id},#{u_name},#{u_pwd},#{u_email,#{u_pid})
+    </insert>
+
+    <delete id="delete">
+        delete from user where u_id = #{u_id}
+    </delete>
+
+    <update id="update" parameterType="com.oo.springboot03.entity.User">
+        UPDATE user
+        <set>
+            <if test="u_name != null and u_name != ''">
+                u_name = #{u_name},
+            </if>
+            <if test="u_pwd != null and u_pwd != ''">
+                u_pwd = #{u_pwd},
+            </if>
+        </set>
+        WHERE u_id = #{u_id}
+    </update>
+
+    <select id="findById" parameterType="int" resultMap="ResultMap">
+        SELECT u_id,
+        <include refid="base_column"></include>
+        FROM user
+        WHERE u_id = #{u_id}
+    </select>
+
+</mapper>
